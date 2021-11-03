@@ -1,18 +1,15 @@
 import pybullet as p
 import pybullet_data
 
-USE_REALTIME_SIM = 0
-USE_SIMPLE_MODEL = 1
-
-class Jueying:
-    def __init__(self,*,realtime_sim = False,simple_model = True):
+class URDFModel:
+    def __init__(self,name,*,realtime_sim = False):
         self.REALTIME_SIM = realtime_sim
         p.connect(p.GUI)
         p.setAdditionalSearchPath(pybullet_data.getDataPath())
         p.setGravity(0,0,-9.8)
         p.setRealTimeSimulation(self.REALTIME_SIM)
         p.loadURDF("plane.urdf")
-        urdf_file = "urdf/simple.urdf" if simple_model else "urdf/whole.urdf"
+        urdf_file = "urdf/"+name
         startPos = [0,0,0.1]
         startOrientation = p.getQuaternionFromEuler([0,0,0])
         self._model = p.loadURDF(urdf_file,startPos,startOrientation)

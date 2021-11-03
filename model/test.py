@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-from quadruped_model import Jueying
+from model import URDFModel
 import time
 def main():
-    model = Jueying()
+    model = URDFModel("aelos.urdf")
     while True:
         model.step()
         time.sleep(0.005)
